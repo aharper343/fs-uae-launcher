@@ -29,7 +29,7 @@ class ClockWindow(Window):
 
         self.old_time = None
         self.update_clock()
-        self.start_timer(100)
+        self.start_timer(1000)
 
         WindowResizeHandle(self)
 
@@ -94,7 +94,7 @@ class ClockQWidget(QWidget):
         for i in range(12):
             px = cx + a * math.cos(2 * math.pi * i / 12)
             py = cy + b * math.sin(2 * math.pi * i / 12)
-            painter.drawEllipse(px - 3, py - 3, 6, 6)
+            painter.drawEllipse(int(px - 3), int(py - 3), 6, 6)
 
         hours, minutes, seconds = self.time[3:]
         minutes += seconds / 60.0
@@ -126,8 +126,8 @@ class ClockQWidget(QWidget):
     def draw_hand_line(self, painter, w, h, cx, cy, a, b, degrees):
         f2 = -math.pi / 2.0
         painter.drawLine(
-            cx,
-            cy,
-            cx + a * math.cos(degrees + f2),
-            cy + b * math.sin(degrees + f2),
+            int(cx),
+            int(cy),
+            int(cx + a * math.cos(degrees + f2)),
+            int(cy + b * math.sin(degrees + f2)),
         )
